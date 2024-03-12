@@ -1,23 +1,19 @@
-#include "mainwindow.h"
-
+#include "widget.h"
+#include "qtcoreclass.h"
 #include <QApplication>
-#include <QLocale>
-#include <QTranslator>
-
+#include "coreclass.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
-    for (const QString &locale : uiLanguages) {
-        const QString baseName = "qtDemo_" + QLocale(locale).name();
-        if (translator.load(":/i18n/" + baseName)) {
-            a.installTranslator(&translator);
-            break;
-        }
-    }
-    MainWindow w;
-    w.show();
+    //Widget继承自QWidget，所有这里就相当于创建了一个QWidget窗口
+//    Widget *wid = new Widget(nullptr);
+//    wid->CreateControlHtml(wid);
+
+    QMainWindow *wid = new QMainWindow(nullptr, 0x00000000);
+    Widget *obj = new Widget(nullptr);
+    obj->createMainWindow(wid);
+
+
     return a.exec();
 }

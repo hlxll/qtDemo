@@ -66,7 +66,9 @@ void Widget::createMainWindow(QMainWindow* mainWin){
     mainWin->resize(400, 400);
     QMenuBar *menuBar = new QMenuBar();
     QMenu *menuObj = menuBar->addMenu("文件");
-    menuObj->addAction("添加");
+    QAction *actionChild = menuObj->addAction("添加");
+    actionChild->setIcon(QIcon(":/static/image/draw.svg"));
+    menuObj->setIcon(QIcon(":/static/image/draw.svg"));
     menuBar->addMenu("视图");
     mainWin->setMenuBar(menuBar);
 
@@ -75,6 +77,18 @@ void Widget::createMainWindow(QMainWindow* mainWin){
 
     QDockWidget *dockWid = new QDockWidget();
     mainWin->addDockWidget(Qt::LeftDockWidgetArea, dockWid);
+
+    QToolBar *toolbar = new QToolBar();
+    mainWin->addToolBar(Qt::LeftToolBarArea, toolbar);
+
+    //消息对话框
+    QMessageBox *mesBox = new QMessageBox(mainWin);
+    mesBox->setText("title");
+    mesBox->exec();
+
+    //颜色对话框
+    QColor colorStr = QColorDialog::getColor(QColor(255, 0, 0));
+    qDebug() << colorStr.red();
     mainWin->show();
 }
 void Widget::loadConfig(){

@@ -15,6 +15,10 @@
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QDockWidget>
+#include <QToolBar>
+#include <QIcon>
+#include <QMessageBox>
+#include <QColorDialog>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE

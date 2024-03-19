@@ -92,11 +92,16 @@ void Widget::createMainWindow(QMainWindow* mainWin){
 
 //    timeObj->start();
 
-    QPainter painter(mainWin);
-    QBrush brush(Qt::red);
-    painter.setBrush(brush);
-    QRect rect(0, 0, 100, 100);
-    painter.drawRect(rect);
+//    qDebug() << "画图";
+//    QPainter painter(this);
+//    painter.drawLine(QPoint(0, 0), QPoint(100, 100));
+
+    QFile file(":/file/demo.txt");
+    if(file.open(QIODevice::ReadOnly)){
+        QString data = file.readLine();
+        qDebug() << data;
+        file.close();
+    }
 
     mainWin->show();
 }

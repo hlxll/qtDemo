@@ -22,8 +22,7 @@
 #include <QFileDialog>
 #include <QTimer>
 #include <QPainter>
-#include <QBrush>
-#include <QRect>
+#include <QFile>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE

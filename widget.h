@@ -19,6 +19,11 @@
 #include <QIcon>
 #include <QMessageBox>
 #include <QColorDialog>
+#include <QFileDialog>
+#include <QTimer>
+#include <QPainter>
+#include <QBrush>
+#include <QRect>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
@@ -34,6 +39,7 @@ public:
     void isoverClass();
     void loadConfig();
     void createMainWindow(QMainWindow* mainWindow);
+    void clickMenu(QMainWindow* mainWindow);
 signals:
 //自定义信号，不需要实现，可以重载
     void hungrl();

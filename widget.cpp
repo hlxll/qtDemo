@@ -68,27 +68,36 @@ void Widget::createMainWindow(QMainWindow* mainWin){
     QMenu *menuObj = menuBar->addMenu("文件");
     QAction *actionChild = menuObj->addAction("添加");
     actionChild->setIcon(QIcon(":/static/image/draw.svg"));
-    menuObj->setIcon(QIcon(":/static/image/draw.svg"));
+//    menuObj->setIcon(QIcon(":/static/image/draw.svg"));
     menuBar->addMenu("视图");
     mainWin->setMenuBar(menuBar);
 
+    connect(actionChild, &QAction::triggered, this,  [=](){
+        this->clickMenu(mainWin);
+    });
     QStatusBar *status = new QStatusBar();
     mainWin->setStatusBar(status);
 
-    QDockWidget *dockWid = new QDockWidget();
-    mainWin->addDockWidget(Qt::LeftDockWidgetArea, dockWid);
+
 
     QToolBar *toolbar = new QToolBar();
     mainWin->addToolBar(Qt::LeftToolBarArea, toolbar);
 
-    //消息对话框
-    QMessageBox *mesBox = new QMessageBox(mainWin);
-    mesBox->setText("title");
-    mesBox->exec();
+    QTimer *timeObj = new QTimer();
+    timeObj->setInterval(1000);
 
-    //颜色对话框
-    QColor colorStr = QColorDialog::getColor(QColor(255, 0, 0));
-    qDebug() << colorStr.red();
+    connect(timeObj, &QTimer::timeout, [](){
+         qDebug() << "interval start";
+    });
+
+//    timeObj->start();
+
+    QPainter painter(mainWin);
+    QBrush brush(Qt::red);
+    painter.setBrush(brush);
+    QRect rect(0, 0, 100, 100);
+    painter.drawRect(rect);
+
     mainWin->show();
 }
 void Widget::loadConfig(){
@@ -100,5 +109,19 @@ void Widget::loadConfig(){
         qDebug() << strData;
     }
 
+}
+void Widget::clickMenu(QMainWindow* mainWin){
+    QDockWidget *dockWid = new QDockWidget();
+    mainWin->addDockWidget(Qt::LeftDockWidgetArea, dockWid);
+    //消息对话框
+//    QMessageBox *mesBox = new QMessageBox(mainWin);
+//    mesBox->setText("title");
+//    mesBox->exec();
+
+    //颜色对话框
+//    QColor colorStr = QColorDialog::getColor(QColor(255, 0, 0));
+//    qDebug() << colorStr.red();
+    //文件获取框
+//    QFileDialog::getOpenFileName(this, "打开文件", "E:\work");
 }
 

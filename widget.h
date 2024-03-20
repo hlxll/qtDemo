@@ -23,6 +23,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QFile>
+#include <QPaintEvent>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
@@ -39,6 +40,7 @@ public:
     void loadConfig();
     void createMainWindow(QMainWindow* mainWindow);
     void clickMenu(QMainWindow* mainWindow);
+    void paintEvent(QPaintEvent *);
 signals:
 //自定义信号，不需要实现，可以重载
     void hungrl();

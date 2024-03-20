@@ -92,10 +92,6 @@ void Widget::createMainWindow(QMainWindow* mainWin){
 
 //    timeObj->start();
 
-//    qDebug() << "画图";
-//    QPainter painter(this);
-//    painter.drawLine(QPoint(0, 0), QPoint(100, 100));
-
     QFile file(":/file/demo.txt");
     if(file.open(QIODevice::ReadOnly)){
         QString data = file.readLine();
@@ -104,6 +100,14 @@ void Widget::createMainWindow(QMainWindow* mainWin){
     }
 
     mainWin->show();
+}
+//直接在其他方法中使用画图会报错，在这里重写Widget的paintEvent方法就可以了，因为QT版本问题
+void Widget::paintEvent(QPaintEvent *){
+    QPainterPath path;
+    path.addRect(20, 20, 60, 60);
+    QPainter painter(this);
+    painter.drawLine(QPoint(0, 0), QPoint(100, 100));
+    painter.drawPath(path);
 }
 void Widget::loadConfig(){
     QFile file(":/config.config");
